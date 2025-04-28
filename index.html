@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="sl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Ena na hitro ...</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+
+<style>
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; position: relative; }
+    body {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f2f5;
+      padding: 1rem;
+    }
+    #naloga-container {
+      width: 100%;
+      max-width: 800px;
+      background: #fff;
+      padding: 2rem;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      text-align: center;
+      font-size: 1.5rem;
+      transition: all 0.3s ease;
+      line-height: 1.8;
+    }
+    #podpis {
+      position: absolute;
+      bottom: 10px;
+      right: 20px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+    #podpis a {
+      color: #888;
+      text-decoration: none;
+    }
+    #podpis a:hover {
+      text-decoration: underline;
+    }
+  </style>
+
+</head>
+<body>
+
+  <div id="naloga-container">
+    <div id="latex-output"></div>
+  </div>
+
+  <div id="podpis">
+    Ena na hitro by <a href="https://osvojiznanje.si" target="_blank">osvojiznanje.si</a>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const naloge = [
+        "##50\\%## od 120 = ?",
+		"##25\\%## od 500 = ?",
+		"##15\\%## od 30 = ?",
+        "##75\\%## od 400 = ?",
+        "##95\\%## od 600 = ?",
+		"Izrazi ##50\\%## z okrajšanim ulomkom.",
+		"Izrazi ##25\\%## z okrajšanim ulomkom.",
+		"Izrazi ##75\\%## z okrajšanim ulomkom.",
+        "Izrazi ##20\\%## z okrajšanim ulomkom.",
+		"Izrazi ##5\\%## z okrajšanim ulomkom.",
+		"Izrazi ##2\\%## z okrajšanim ulomkom.",
+		"Izrazi ##4\\%## z okrajšanim ulomkom.",
+		"Izrazi ##40\\%## z okrajšanim ulomkom.",
+		"Izrazi ##60\\%## z okrajšanim ulomkom.",
+		"Izrazi ##80\\%## z okrajšanim ulomkom.",
+		"Koliko odstotkov je ##\\frac{1}{2}##?",
+		"Koliko odstotkov je ##\\frac{1}{4}##?",
+		"Koliko odstotkov je ##\\frac{3}{4}##?",
+		"Koliko odstotkov je ##\\frac{1}{5}##?",
+		"Koliko odstotkov je ##\\frac{1}{20}##?",
+		"Koliko odstotkov je ##\\frac{1}{25}##?",
+		"Koliko odstotkov je ##\\frac{1}{50}##?",
+		"Izrazi ##\\frac{5}{8}## z decimalnim številom.",
+		"Izrazi ##\\frac{1}{4}## z decimalnim številom.",
+		"Izrazi ##\\frac{1}{2}## z decimalnim številom.",
+		"Izrazi ##\\frac{3}{4}## z decimalnim številom.",
+		"Izrazi ##\\frac{3}{5}## z decimalnim številom.",
+		"Izrazi ##\\frac{7}{20}## z decimalnim številom.",
+		"Izrazi ##\\frac{9}{25}## z decimalnim številom.",
+		"Izrazi ##\\frac{3}{50}## z decimalnim številom."
+		];
+
+      const output = document.getElementById("latex-output");
+      
+      const idx = Math.floor(Math.random() * naloge.length);
+      const izbrana = naloge[idx];
+
+      output.innerHTML = "";
+
+      // Razbij niz na tekst in latex dele
+      const deli = izbrana.split(/(##.*?##)/g);
+
+      deli.forEach(del => {
+        if (del.startsWith("##") && del.endsWith("##")) {
+          const latexVsebina = del.slice(2, -2); // odstrani ##
+          const span = document.createElement("span");
+          katex.render(latexVsebina, span, {
+            throwOnError: false
+          });
+          output.appendChild(span);
+        } else {
+          const textNode = document.createTextNode(del);
+          output.appendChild(textNode);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
