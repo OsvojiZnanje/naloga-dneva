@@ -10,14 +10,16 @@
 <style>
     * { margin:0; padding:0; box-sizing:border-box; }
     html, body { height:100%; position: relative; }
-    body {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding-top: 80px; /* ali poljubno */
-  min-height: 100vh;
-  background: #fff89a; /* tvoje ozadje */
-     }
+	body {
+	  display: flex;
+	  flex-direction: column; /* nova vrstica, da postavi vsebino v stolpec */
+	  align-items: center;
+	  justify-content: flex-start; /* nova vrstica, da se vse začne od vrha */
+	  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	  background: #f0f2f5;
+	  padding: 4rem 1rem 1rem 1rem; /* zgoraj več paddinga, npr. 4rem */
+	  min-height: 100vh; /* stran naj vedno zavzame polno višino zaslona */
+	}
     #naloga-container {
       width: 100%;
       max-width: 800px;
